@@ -35,12 +35,10 @@ class Tankgo(MycroftSkill):
     @intent_file_handler('tankgo.intent')
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
-        
+        global counter
         while counter < 50000:
-            global counter
-            counter += 1
-        
-        
+            counter += 1        
+            
             GPIO.output(in1,GPIO.HIGH)
             GPIO.output(in2,GPIO.LOW)
             GPIO.output(in3,GPIO.LOW)
