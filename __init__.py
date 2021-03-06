@@ -31,26 +31,25 @@ counter = 0
 class Tankgo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-
+        
     @intent_file_handler('tankgo.intent')
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
         #global counter
         #while counter < 50000:
         #    counter += 1        
-            
-        GPIO.output(in1,GPIO.HIGH)
-        GPIO.output(in2,GPIO.LOW)
-        GPIO.output(in3,GPIO.LOW)
-        GPIO.output(in4,GPIO.HIGH)
         
-            #tank forward
-            #Motor power setup here. Just one speed.
+        #tank forward
+        #Motor power setup here. Just one speed.
         p.start(50)
         p2.start(55) #l motor is a little weaker on my setup.
             #Compensate with slightly more juice going to the weaker motor to help it drive straighter.
         
-        
+        GPIO.output(in1,GPIO.HIGH)
+        GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.HIGH)
+               
 #           p.ChangeDutyCycle(0)
 #           p2.ChangeDutyCycle(0)
     GPIO.cleanup()        
