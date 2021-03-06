@@ -1,7 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler
 import RPi.GPIO as GPIO
-import time
-from time import sleep
+#import time
+#from time import sleep
 
 in1 = 17 # R Motor GPIO address
 #GPIO 17 = wPi , BCM 8, phys addr = 18
@@ -47,7 +47,7 @@ class Tankgo(MycroftSkill):
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
         GPIO.output(in4,GPIO.HIGH)
-        time.sleep(3)
+        #time.sleep(3)
         x = 'z'
 #        GPIO.output(in1,GPIO.LOW)
 #        GPIO.output(in2,GPIO.LOW)
@@ -57,6 +57,8 @@ class Tankgo(MycroftSkill):
         
          p.changedutycycle(0)
          p2.changedutycycle(0)
+         p.stop
+         p2.stop
 
 def create_skill():
     return Tankgo()
