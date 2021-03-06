@@ -35,18 +35,18 @@ class Tankgo(MycroftSkill):
     @intent_file_handler('tankgo.intent')
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
+            
+        GPIO.output(in1,GPIO.HIGH)
+        GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.HIGH)
         
         #tank forward
         #Motor power setup here. Just one speed.
         p.start(50)
         p2.start(55) #l motor is a little weaker on my setup.
         #Compensate with slightly more juice going to the weaker motor to help it drive straighter.
-
         
-        GPIO.output(in1,GPIO.HIGH)
-        GPIO.output(in2,GPIO.LOW)
-        GPIO.output(in3,GPIO.LOW)
-        GPIO.output(in4,GPIO.HIGH)
         time.sleep(3)
 #        x = 'z'
 #        GPIO.output(in1,GPIO.LOW)
@@ -55,11 +55,11 @@ class Tankgo(MycroftSkill):
 #        GPIO.output(in4,GPIO.LOW)
 #        x = 'z'
         
-        #p.changedutycycle(0)
-        #p2.changedutycycle(0)
+        p.ChangeDutyCycle(0)
+        p2.ChangeDutyCycle(0)
         
-        p.start(0)
-        p2.start(0)
+#        p.start(0)
+#        p2.start(0)
 
 def create_skill():
     return Tankgo()
