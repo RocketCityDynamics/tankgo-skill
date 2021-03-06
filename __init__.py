@@ -58,7 +58,7 @@ class Tankgo(MycroftSkill):
         
 #        p.ChangeDutyCycle(0)
 #        p2.ChangeDutyCycle(0)
-         GPIO.cleanup        
+         GPIO.cleanup()        
 #        p.start(0)
 #        p2.start(0)
 
