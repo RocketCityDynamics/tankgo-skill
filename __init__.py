@@ -58,8 +58,8 @@ class Tankgo(MycroftSkill):
         #p.changedutycycle(0)
         #p2.changedutycycle(0)
         
-        p.stop
-        p2.stop
+        p.start(0)
+        p2.start(0)
 
 def create_skill():
     return Tankgo()
