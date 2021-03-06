@@ -36,6 +36,7 @@ class Tankgo(MycroftSkill):
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
         
+        global counter
         while counter < 50000:
             counter += 1
         
