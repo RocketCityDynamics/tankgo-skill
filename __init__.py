@@ -1,6 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 import RPi.GPIO as GPIO
-import time
+#import time
 from time import sleep
 
 in1 = 17 # R Motor GPIO address
