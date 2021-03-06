@@ -55,8 +55,8 @@ class Tankgo(MycroftSkill):
 #        GPIO.output(in4,GPIO.LOW)
 #        x = 'z'
         
-        p.changedutycycle(0)
-        p2.changedutycycle(0)
+        #p.changedutycycle(0)
+        #p2.changedutycycle(0)
         
         p.stop
         p2.stop
