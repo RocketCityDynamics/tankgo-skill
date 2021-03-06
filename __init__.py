@@ -42,7 +42,12 @@ class Tankgo(MycroftSkill):
         GPIO.output(in4,GPIO.HIGH)
         time.sleep = (3)
         x = 'z'
-
+        GPIO.output(in1,GPIO.LOW)
+        GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.LOW)
+        x = 'z'
+        
 
 def create_skill():
     return Tankgo()
