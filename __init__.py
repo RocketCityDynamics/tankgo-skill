@@ -47,7 +47,8 @@ class Tankgo(MycroftSkill):
         p2.start(55) #l motor is a little weaker on my setup.
         #Compensate with slightly more juice going to the weaker motor to help it drive straighter.
         
-        time.sleep(3)
+        p.time.sleep(3)
+        p2.time.sleep(3)
 #        x = 'z'
 #        GPIO.output(in1,GPIO.LOW)
 #        GPIO.output(in2,GPIO.LOW)
@@ -55,9 +56,9 @@ class Tankgo(MycroftSkill):
 #        GPIO.output(in4,GPIO.LOW)
 #        x = 'z'
         
-        p.ChangeDutyCycle(0)
-        p2.ChangeDutyCycle(0)
-        
+#        p.ChangeDutyCycle(0)
+#        p2.ChangeDutyCycle(0)
+         GPIO.cleanup        
 #        p.start(0)
 #        p2.start(0)
 
