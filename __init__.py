@@ -31,11 +31,7 @@ p2=GPIO.PWM(en2,1000)
 #Motor power setup here. Just one speed.
 p.start(50)
 p2.start(55) #l motor is a little weaker on my setup.
-            #Compensate with slightly more juice going to the weaker motor to help it drive straighter.
-GPIO.output(in1,GPIO.HIGH)
-GPIO.output(in2,GPIO.LOW)
-GPIO.output(in3,GPIO.LOW)
-GPIO.output(in4,GPIO.HIGH)
+#Compensate with slightly more juice going to the weaker motor to help it drive straighter.
 
 
 
@@ -49,12 +45,14 @@ class Tankgo(MycroftSkill):
         #global counter
         #while counter < 50000:
         #    counter += 1        
-               
-               
+        GPIO.output(in1,GPIO.HIGH)
+        GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.HIGH)
 #       p.ChangeDutyCycle(0)
 #       p2.ChangeDutyCycle(0)
         time.sleep(3)
-        GPIO.cleanup()        
+#        GPIO.cleanup()        
 #       p.start(0)
 #       p2.start(0)
 
