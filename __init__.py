@@ -3,6 +3,14 @@ import RPi.GPIO as GPIO
 import time
 from time import sleep
 
+#Python scripts execute sequentially, meaning one line right after the other.
+#The method for DC motor movement that worked in this script is to:
+# 1. set the correct pins for motions
+# 2. wait 3 seconds
+# 3. then turn the pins all to "low", effectively killing the power at the right time.
+
+#this is a permutation of the Python test script to drive the motors with a wireless gamepad. This takes a chunk of that code and makes it work by voice.
+
 in1 = 17 # R Motor GPIO address
 #GPIO 17 = wPi , BCM 8, phys addr = 18
 in2 = 27 # R Motor GPIO address
@@ -27,11 +35,11 @@ GPIO.setup(in4,GPIO.OUT)
 GPIO.setup(en2,GPIO.OUT)
 p=GPIO.PWM(en,1000)
 p2=GPIO.PWM(en2,1000)
-#tank forward
-#Motor power setup here. Just one speed.
-p.start(50)
-p2.start(55) #l motor is a little weaker on my setup.
-#Compensate with slightly more juice going to the weaker motor to help it drive straighter.
+# tank forward
+# Motor power setup here. Just one speed.
+p.start(40)
+p2.start(45) # l motor is a little weaker on my setup.
+# Compensate with slightly more juice going to the weaker motor to help it drive straighter.
 
 
 
@@ -42,26 +50,31 @@ class Tankgo(MycroftSkill):
     @intent_file_handler('tankgo.intent')
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
-        #global counter
-        #while counter < 50000:
-        #    counter += 1        
+  
         GPIO.output(in1,GPIO.HIGH)
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
         GPIO.output(in4,GPIO.HIGH)
-#       p.ChangeDutyCycle(0)
-#       p2.ChangeDutyCycle(0)
-        time.sleep(3)
-#       p.stop()
-#       p2.stop()
+
+        time.sleep(3) #This finally worked.
+
+        #We then set all of the GPIO outputs to "low" to kill the power.
         GPIO.output(in1,GPIO.LOW)
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
         GPIO.output(in4,GPIO.LOW)
 
-#   GPIO.cleanup()        
-#   p.start(0)
+#   WHAT DIDN'T WORK!        
+#   GPIO.cleanup() # This resets every pin back to input.
+#   p.start(0) #This was to try and kill the power. It didn't work.
 #   p2.start(0)
+#   p.stop()
+#   p2.stop()
+
+#   To turn the pins off or stop them outright just didn't work very smoothly. Setting the GPIO output before the @intent_file_handler('tankgo.intent')
+#   made the motors turn on but never turn off, and do so at weird times. So, the time that you set up the pins is as crucial as having the correct pins trigger.
+
+
 
 def create_skill():
     return Tankgo()
