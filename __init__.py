@@ -41,8 +41,8 @@ class Tankgo(MycroftSkill):
         GPIO.setup(in3,GPIO.OUT)
         GPIO.setup(in4,GPIO.OUT)
         GPIO.setup(en2,GPIO.OUT)
-#       p=GPIO.PWM(en,1000)
-#       p2=GPIO.PWM(en2,1000)
+        p=GPIO.PWM(en,1000)
+        p2=GPIO.PWM(en2,1000)
         # tank forward
         # Motor power setup here. Just one speed.
         p.start(40)
@@ -61,7 +61,9 @@ class Tankgo(MycroftSkill):
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
         GPIO.output(in4,GPIO.LOW)
-
+        p.stop()
+        p2.stop()
+        
 #   WHAT DIDN'T WORK!        
 #   GPIO.cleanup() # This resets every pin back to input.
 #   p.start(0) #This was to try and kill the power. It didn't work.
