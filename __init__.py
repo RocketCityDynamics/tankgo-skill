@@ -41,8 +41,8 @@ class Tankgo(MycroftSkill):
         GPIO.setup(in3,GPIO.OUT)
         GPIO.setup(in4,GPIO.OUT)
         GPIO.setup(en2,GPIO.OUT)
-        p=GPIO.PWM(en,1000)
-        p2=GPIO.PWM(en2,1000)
+#       p=GPIO.PWM(en,1000)
+#       p2=GPIO.PWM(en2,1000)
         # tank forward
         # Motor power setup here. Just one speed.
         p.start(40)
