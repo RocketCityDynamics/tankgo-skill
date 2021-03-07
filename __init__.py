@@ -25,24 +25,6 @@ en2 = 22 #R MOTOR GPIO
 #GPIO 22 = wPi 3, BCM 22, phys addr = 15
 temp1=1
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(in1,GPIO.OUT)
-GPIO.setup(in2,GPIO.OUT)
-GPIO.setup(en,GPIO.OUT)
-GPIO.setup(in3,GPIO.OUT)
-GPIO.setup(in4,GPIO.OUT)
-GPIO.setup(en2,GPIO.OUT)
-p=GPIO.PWM(en,1000)
-p2=GPIO.PWM(en2,1000)
-# tank forward
-# Motor power setup here. Just one speed.
-p.start(40)
-p2.start(45) # l motor is a little weaker on my setup.
-# Compensate with slightly more juice going to the weaker motor to help it drive straighter.
-
-
-
 class Tankgo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
@@ -50,7 +32,23 @@ class Tankgo(MycroftSkill):
     @intent_file_handler('tankgo.intent')
     def handle_tankgo(self, message):
         self.speak_dialog('tankgo')
-  
+
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(in1,GPIO.OUT)
+        GPIO.setup(in2,GPIO.OUT)
+        GPIO.setup(en,GPIO.OUT)
+        GPIO.setup(in3,GPIO.OUT)
+        GPIO.setup(in4,GPIO.OUT)
+        GPIO.setup(en2,GPIO.OUT)
+        p=GPIO.PWM(en,1000)
+        p2=GPIO.PWM(en2,1000)
+        # tank forward
+        # Motor power setup here. Just one speed.
+        p.start(40)
+        p2.start(45) # l motor is a little weaker on my setup.
+        # Compensate with slightly more juice going to the weaker motor to help it drive straighter.
+        
         GPIO.output(in1,GPIO.HIGH)
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
